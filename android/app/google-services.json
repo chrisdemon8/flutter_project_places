@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "421566830716",
+    "firebase_url": "https://unusual-places-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "unusual-places",
+    "storage_bucket": "unusual-places.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421566830716:android:974891697d0f065a2291f9",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_place"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421566830716-490r4rmdli2l84mn91lkteo6r1mo5on0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZcdW35xPqxSRG0oByar27rXyNlDDrndw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421566830716-490r4rmdli2l84mn91lkteo6r1mo5on0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
