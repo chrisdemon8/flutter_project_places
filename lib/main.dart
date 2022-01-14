@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               print("You have an error! ${snapshot.error.toString()}");
               return const Text("Something wrong!");
             } else if (snapshot.hasData) {
-              return MyHomePage(title: 'Flutter Demo Home Page');
+              return const MyHomePage(title: 'Flutter Demo Home Page');
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
