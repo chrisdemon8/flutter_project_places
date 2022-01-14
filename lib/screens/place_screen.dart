@@ -14,13 +14,21 @@ class _PlacePageState extends State<PlacePage> {
   _readPlace() async {
     DatabaseReference _testRef =
         FirebaseDatabase.instance.ref().child("places");
-    print(_testRef);
+
     DatabaseEvent event = await _testRef.child(widget.placeId).once();
 
     DataSnapshot snapshot = event.snapshot;
     Map place = snapshot.value as Map;
 
-    print(place["name"]);
+    UnusualSpot placeObject = UnusualSpot(
+        id: place["key"],
+        name: place["name"],
+        description: place["description"],
+        images: [],
+        country: place["country"],
+        rating: "");
+
+    print(placeObject.name);
   }
 
   @override
