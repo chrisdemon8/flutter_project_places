@@ -3,7 +3,7 @@ class UnusualSpot {
   String name;
   String? cityName;
   String? description;
-  List<String>? images;
+  List<Object?> images;
   String? country;
   dynamic rating;
 
@@ -11,7 +11,7 @@ class UnusualSpot {
       {this.id,
       required this.name,
       this.description,
-      this.images,
+      required this.images,
       this.country,
       this.rating});
 

@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_place/models/unusualspot.dart';
 
@@ -18,6 +20,10 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
   final _controllerDescription = TextEditingController();
   final _controllerName = TextEditingController();
   final _controllerCountry = TextEditingController();
+  final _controllerLinkImage = TextEditingController();
+  final _controllerLinkImage2 = TextEditingController();
+  final _controllerLinkImage3 = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   void _incrementCounter() {
@@ -32,11 +38,16 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
     String name = _controllerName.text;
     String description = _controllerDescription.text;
     String country = _controllerCountry.text;
+    String imageLink = _controllerLinkImage.text;
+    String imageLink2 = _controllerLinkImage2.text;
+    String imageLink3 = _controllerLinkImage3.text;
 
-    Map<String, String> place = {
+
+    Map<dynamic, dynamic> place = {
       'name': name,
       'country': country,
-      'description': description
+      'description': description,
+      'images': [imageLink , imageLink2 , imageLink3]
     };
 
     DatabaseReference _testRef =
@@ -112,6 +123,57 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Description du lieux insolite',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextFormField(
+                    controller: _controllerLinkImage,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'S\'il vou plait entrer le lien d\'une image';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Image du lieu n°1',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextFormField(
+                    controller: _controllerLinkImage2,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'S\'il vou plait entrer le lien d\'une image';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Image du lieu n°2',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextFormField(
+                    controller: _controllerLinkImage3,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'S\'il vou plait entrer le lien d\'une image';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Image du lieu n°3',
                     ),
                   ),
                 ),

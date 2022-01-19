@@ -29,14 +29,19 @@ class _PlacePageState extends State<PlacePage> {
     DataSnapshot snapshot = event.snapshot;
     Map place = snapshot.value as Map;
 
+
+    print(place["images"]);
+
     UnusualSpot _placeObject = UnusualSpot(
         id: place["key"],
         name: place["name"],
         description: place["description"],
-        images: ["https://img.ev.mu/images/articles/600x/986627.jpg","https://upload.wikimedia.org/wikipedia/commons/5/55/Rotheneuf.jpg"],
+        images: place["images"] ,
         country: place["country"],
         rating: "");
 
+
+    //["https://img.ev.mu/images/articles/600x/986627.jpg","https://upload.wikimedia.org/wikipedia/commons/5/55/Rotheneuf.jpg"]
     return _placeObject;
   }
 
@@ -65,8 +70,9 @@ class _PlacePageState extends State<PlacePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Image(
-                    image: NetworkImage('https://cdn.generationvoyage.fr/2019/10/rochers-sculptes-abbe-fourre-bretagne.jpg'),
+                  
+                   Image(
+                    image: NetworkImage(_placeObject.images[0] as String),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left : 12.0, right : 12.0),
@@ -114,7 +120,7 @@ class _PlacePageState extends State<PlacePage> {
                     height: 250,
                     child:
                     ListView.builder(
-                        itemCount: _placeObject.images?.length,
+                        itemCount: _placeObject.images.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Card(
@@ -125,7 +131,7 @@ class _PlacePageState extends State<PlacePage> {
                             child: AspectRatio(
                                 aspectRatio: 1,
                                 child: Image.network(
-                                  _placeObject.images![index],
+                                  _placeObject.images[index] as String,
                                   fit: BoxFit.cover,
                                 )),
                           );
