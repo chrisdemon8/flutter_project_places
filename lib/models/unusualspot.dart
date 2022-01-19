@@ -1,15 +1,15 @@
 class UnusualSpot {
   String? id;
-  String? name;
+  String name;
   String? cityName;
   String? description;
-  List<Object>? images;
+  List<String>? images;
   String? country;
   dynamic rating;
 
   UnusualSpot(
       {this.id,
-      this.name,
+      required this.name,
       this.description,
       this.images,
       this.country,
