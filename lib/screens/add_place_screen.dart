@@ -14,9 +14,7 @@ class CreatePlacePage extends StatefulWidget {
 }
 
 class _CreatePlacePageState extends State<CreatePlacePage> {
-  int _counter = 0;
 
-  //final place = new UnusualSpot();
   final _controllerDescription = TextEditingController();
   final _controllerName = TextEditingController();
   final _controllerCountry = TextEditingController();
@@ -26,13 +24,6 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void _incrementCounter() {
-    DatabaseReference _testRef = FirebaseDatabase.instance.ref().child("test");
-    _testRef.set("Hello wold ${Random().nextInt(100)}");
-    setState(() {
-      _counter++;
-    });
-  }
 
   void _savePlace() {
     String name = _controllerName.text;
@@ -42,12 +33,11 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
     String imageLink2 = _controllerLinkImage2.text;
     String imageLink3 = _controllerLinkImage3.text;
 
-
     Map<dynamic, dynamic> place = {
       'name': name,
       'country': country,
       'description': description,
-      'images': [imageLink , imageLink2 , imageLink3]
+      'images': [imageLink, imageLink2, imageLink3]
     };
 
     DatabaseReference _testRef =
@@ -66,6 +56,22 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Ajout d\'un lieu'),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(Icons.save),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  // If the form is valid, display a snackbar. In the real world,
+                  // you'd often call a server or save the information in a database.
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Lieu ajouté avec succès")),
+                  );
+                  _savePlace();
+                  Navigator.pop(context);
+                }
+              })
+        ],
         backgroundColor: Colors.black12,
       ),
       body: SingleChildScrollView(
@@ -82,7 +88,7 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                     controller: _controllerName,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Veuillez entrer le nom du lieu';
                       }
                       return null;
                     },
@@ -99,7 +105,7 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                     controller: _controllerCountry,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Veuillez entrer le pays';
                       }
                       return null;
                     },
@@ -116,7 +122,7 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                     controller: _controllerDescription,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Veuillez entrer une description';
                       }
                       return null;
                     },
@@ -128,7 +134,7 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                 ),
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child: TextFormField(
                     controller: _controllerLinkImage,
                     validator: (value) {
@@ -145,7 +151,7 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                 ),
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child: TextFormField(
                     controller: _controllerLinkImage2,
                     validator: (value) {
@@ -162,7 +168,7 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                 ),
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child: TextFormField(
                     controller: _controllerLinkImage3,
                     validator: (value) {
@@ -177,35 +183,11 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text("Lieu ajouté avec succès")),
-                        );
-                        _savePlace();
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: const Text('Submit'),
-                  ),
-                ),
               ],
             ),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.*/
     );
   }
 }

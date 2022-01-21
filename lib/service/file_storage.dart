@@ -27,7 +27,6 @@ class FileStorage {
       return jsonDecode(contents);
     } catch (e) {
       // If encountering an error, return 0
-      print(e);
       return {};
     }
   }
