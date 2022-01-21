@@ -3,11 +3,13 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_place/screens/add_place_screen.dart';
 import 'package:flutter_application_place/screens/place_screen.dart';
+import 'package:flutter_application_place/service/dao.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.storage}) : super(key: key);
 
   final String title;
+  final FileStorage storage;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -17,14 +19,24 @@ class _MyHomePageState extends State<MyHomePage> {
   final Query _ref =
       FirebaseDatabase.instance.ref().child("places").orderByChild("name");
 
-  List<String> savedFav = <String>[];
+  Map<String, dynamic> savedFav = {};
   @override
   void initState() {
     super.initState();
+    widget.storage.readFav().then((Map<String, dynamic> value) {
+      setState(() {
+        savedFav = value;
+      });
+    });
   }
 
   Widget _buildPlaceItem({required Map place}) {
-    bool isSaved = savedFav.contains(place["key"]);
+
+
+
+    bool isSaved = savedFav.containsKey(place["key"]);
+
+
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
@@ -49,8 +61,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (isSaved) {
                     savedFav.remove(place['key']);
                   } else {
-                    savedFav.add(place['key']);
+                    savedFav['key'] = place['key'];
+
                   }
+
+                  print(savedFav);
+                  widget.storage.writeFav(savedFav);
+/*
+                  widget.storage.readFav().then((List<dynamic> value) {
+                    print(value);
+                  });*/
                 });
               },
             ),
@@ -107,12 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black12,
