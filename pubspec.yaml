@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.2.0
   path_provider: ^2.0.8
-
+  country_picker: ^2.0.10
 
 
 dev_dependencies:

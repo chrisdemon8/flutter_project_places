@@ -14,7 +14,6 @@ class CreatePlacePage extends StatefulWidget {
 }
 
 class _CreatePlacePageState extends State<CreatePlacePage> {
-
   final _controllerDescription = TextEditingController();
   final _controllerName = TextEditingController();
   final _controllerCountry = TextEditingController();
@@ -23,7 +22,6 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
   final _controllerLinkImage3 = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-
 
   void _savePlace() {
     String name = _controllerName.text;
