@@ -13,4 +13,4 @@
 
 |             Home screen             |             Détail screen           |
 | :----------------------------------: | :----------------------------------: |
-|  <img src="homescreen.gif" width="350">  |  <img src="detailscreen" width="350"> |
+|  <img src="homescreen.png" width="350">  |  <img src="detailscreen.png" width="350"> |
