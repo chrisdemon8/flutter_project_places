@@ -1,16 +1,16 @@
-# flutter_application_place
+# PETRE Christophe flutter_application_place
 
-A new Flutter project.
+## Cahier des charges 
+- Application de gestion de lieux touristiques insolites
+- Mise en place d'une connexion à firebase 
+- Méthode de création, suppression et de lecture des données 
+- Mise en place d'un fichier local pour enregistrer les favoris sur l'appareil en local
+- Design responsive qui s'adapte en portrait et en paysage
+- Ajout d'un nouveau lieu par tous les utilisateurs de l'application depuis un bouton flottant sur la homepage
 
-## Getting Started
+# ✌ Preview
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+|             Home screen             |             Détail screen           |
+| :----------------------------------: | :----------------------------------: |
+|  <img src="homescreen.gif" width="350">  |  <img src="detailscreen" width="350"> |
