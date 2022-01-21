@@ -17,12 +17,15 @@ class _MyHomePageState extends State<MyHomePage> {
   final Query _ref =
       FirebaseDatabase.instance.ref().child("places").orderByChild("name");
 
+  List<String> savedFav = <String>[];
   @override
   void initState() {
     super.initState();
   }
 
   Widget _buildPlaceItem({required Map place}) {
+    bool isSaved = savedFav.contains(place["key"]);
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.all(10),
@@ -33,12 +36,43 @@ class _MyHomePageState extends State<MyHomePage> {
               context,
               MaterialPageRoute(builder: (context) => PlacePage(place["key"])),
             );
-            print(place['key']);
           },
-          child: Column(
+          child: ListTile(
+            title: Text(place['name']),
+            trailing: IconButton(
+              icon: isSaved
+                  ? const Icon(Icons.favorite)
+                  : const Icon(Icons.favorite_border),
+              color: isSaved ? Colors.red : null,
+              onPressed: () {
+                setState(() {
+                  if (isSaved) {
+                    savedFav.remove(place['key']);
+                  } else {
+                    savedFav.add(place['key']);
+                  }
+                });
+              },
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PlacePage(place["key"])),
+              );
+            },
+          )
+
+          /*
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
+
             children: [
+              Icon(
+              isSaved ? Icons.favorite : Icons.favorite_border,
+              color: isSaved ? Colors.red : null,
+            ),
               Row(
                 children: [
                   Flexible(
@@ -64,20 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   )),
                 ],
               ),
-              Row(
-                children: [
-                  Flexible(
-                      child: Text(
-                    place['description'],
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w600),
-                  )),
-                ],
-              ),
+
             ],
-          )),
+          ) */
+          ),
     );
   }
 
@@ -91,8 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        backgroundColor: Colors.black12,
         title: Text(widget.title),
       ),
       body: SizedBox(

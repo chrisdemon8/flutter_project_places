@@ -66,7 +66,7 @@ class _CreatePlacePageState extends State<CreatePlacePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("test"),
+        backgroundColor: Colors.black12,
       ),
       body: SingleChildScrollView(
         child: Center(
