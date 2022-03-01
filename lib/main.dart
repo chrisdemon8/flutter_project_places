@@ -3,18 +3,26 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_place/screens/home_screen.dart';
 import 'package:flutter_application_place/service/file_storage.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-        statusBarColor: Colors.black12,
-      systemNavigationBarColor: Colors.black12,
-    )
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.black12,
+    systemNavigationBarColor: Colors.black12,
+  ));
+  runApp(
+    MultiProvider(
+      providers: [
+
+      ],
+      child: MyApp(
+        key: const Key('MyApp'),
+      ),
+    ),
   );
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +53,8 @@ class MyApp extends StatelessWidget {
               print("You have an error! ${snapshot.error.toString()}");
               return const Text("Something wrong!");
             } else if (snapshot.hasData) {
-              return MyHomePage(title: 'Lieux insolites', storage: FileStorage());
+              return MyHomePage(
+                  title: 'Lieux insolites', storage: FileStorage());
             } else {
               return const Center(
                 child: CircularProgressIndicator(),

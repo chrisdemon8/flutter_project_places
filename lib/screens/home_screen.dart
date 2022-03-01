@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_place/screens/add_place_screen.dart';
 import 'package:flutter_application_place/screens/place_screen.dart';
 import 'package:flutter_application_place/service/file_storage.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title, required this.storage}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.storage})
+      : super(key: key);
 
   final String title;
   final FileStorage storage;
@@ -31,12 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildPlaceItem({required Map place}) {
-
-
-
     bool isSaved = savedFav.containsKey(place["key"]);
-
-
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
@@ -62,12 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     savedFav.remove(place['key']);
                   } else {
                     savedFav[place['key']] = place['key'];
-
                   }
 
                   widget.storage.writeFav(savedFav);
 
-                  widget.storage.readFav().then(( value) {
+                  widget.storage.readFav().then((value) {
                     print(value);
                   });
                 });
@@ -124,8 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black12,
@@ -141,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
               place['key'] = snapshot.key;
               return _buildPlaceItem(place: place);
             }),
-      ),
+      ), 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
