@@ -1,5 +1,7 @@
 # PETRE Christophe flutter_application_place
 
+## Manuel d'utilisation en pdf à la base du git 
+
 ## Cahier des charges 
 - Application de gestion de lieux touristiques insolites
 - Mise en place d'une connexion à firebase 
