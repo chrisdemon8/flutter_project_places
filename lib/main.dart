@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_place/screens/home_screen.dart';
 import 'package:flutter_application_place/service/file_storage.dart';
-import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,16 +12,7 @@ Future<void> main() async {
     statusBarColor: Colors.black12,
     systemNavigationBarColor: Colors.black12,
   ));
-  runApp(
-    MultiProvider(
-      providers: [
-
-      ],
-      child: MyApp(
-        key: const Key('MyApp'),
-      ),
-    ),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

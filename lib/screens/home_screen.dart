@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_place/screens/add_place_screen.dart';
 import 'package:flutter_application_place/screens/place_screen.dart';
 import 'package:flutter_application_place/service/file_storage.dart';
-import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title, required this.storage})
@@ -139,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
               place['key'] = snapshot.key;
               return _buildPlaceItem(place: place);
             }),
-      ), 
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
